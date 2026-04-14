@@ -9,7 +9,22 @@ use Illuminate\Http\Request;
 class CardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Get all cards of a deck
+     *
+     * Gibt alle Karten eines bestimmten Decks zurück.
+     *
+     * @urlParam deck integer required Die ID des Decks. Example: 1
+     *
+     * @response 200 [
+     *   {
+     *     "id": 1,
+     *     "front": "Was ist Laravel?",
+     *     "back": "Ein PHP Framework",
+     *     "deck_id": 1,
+     *     "created_at": "2026-04-14T10:00:00.000000Z",
+     *     "updated_at": "2026-04-14T10:00:00.000000Z"
+     *   }
+     * ]
      */
     public function index(Deck $deck)
     {
@@ -17,7 +32,23 @@ class CardController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new card
+     *
+     * Erstellt eine neue Karte in einem Deck.
+     *
+     * @urlParam deck integer required Die ID des Decks. Example: 1
+     *
+     * @bodyParam front string required Vorderseite der Karte. Example: Was ist PHP?
+     * @bodyParam back string required Rückseite der Karte. Example: Eine Programmiersprache
+     *
+     * @response 201 {
+     *   "id": 1,
+     *   "front": "Was ist PHP?",
+     *   "back": "Eine Programmiersprache",
+     *   "deck_id": 1,
+     *   "created_at": "2026-04-14T10:00:00.000000Z",
+     *   "updated_at": "2026-04-14T10:00:00.000000Z"
+     * }
      */
     public function store(Request $request, Deck $deck)
     {

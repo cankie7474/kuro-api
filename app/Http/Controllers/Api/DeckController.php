@@ -9,7 +9,20 @@ use Illuminate\Http\Request;
 class DeckController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Get all decks
+     *
+     * Gibt alle Decks zurück.
+     *
+     * @response 200 [
+     *   {
+     *     "id": 1,
+     *     "title": "Mathe",
+     *     "description": "Formeln lernen",
+     *     "color": "#4ACDB5",
+     *     "created_at": "2026-04-14T10:00:00.000000Z",
+     *     "updated_at": "2026-04-14T10:00:00.000000Z"
+     *   }
+     * ]
      */
     public function index()
     {
@@ -17,7 +30,22 @@ class DeckController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new deck
+     *
+     * Erstellt ein neues Deck.
+     *
+     * @bodyParam title string required Titel des Decks. Example: Englisch Vokabeln
+     * @bodyParam description string Beschreibung des Decks. Example: Lernen für Test
+     * @bodyParam color string Farbe des Decks. Example: #098588
+     *
+     * @response 201 {
+     *   "id": 1,
+     *   "title": "Englisch Vokabeln",
+     *   "description": "Lernen für Test",
+     *   "color": "#098588",
+     *   "created_at": "2026-04-14T10:00:00.000000Z",
+     *   "updated_at": "2026-04-14T10:00:00.000000Z"
+     * }
      */
     public function store(Request $request)
     {
@@ -35,7 +63,20 @@ class DeckController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get a single deck
+     *
+     * Gibt ein einzelnes Deck zurück.
+     *
+     * @urlParam deck integer required Die ID des Decks. Example: 1
+     *
+     * @response 200 {
+     *   "id": 1,
+     *   "title": "Mathe",
+     *   "description": "Formeln lernen",
+     *   "color": "#4ACDB5",
+     *   "created_at": "2026-04-14T10:00:00.000000Z",
+     *   "updated_at": "2026-04-14T10:00:00.000000Z"
+     * }
      */
     public function show(Deck $deck)
     {
