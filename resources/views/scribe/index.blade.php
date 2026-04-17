@@ -77,17 +77,29 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-decks">
                                 <a href="#endpoints-GETapi-decks">Get all decks</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-decks--deck_id-">
+                                <a href="#endpoints-GETapi-decks--deck_id-">Get a single deck</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-decks">
                                 <a href="#endpoints-POSTapi-decks">Create a new deck</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-decks--deck_id-">
-                                <a href="#endpoints-GETapi-decks--deck_id-">Get a single deck</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-decks--deck_id-">
+                                <a href="#endpoints-DELETEapi-decks--deck_id-">Delete a deck</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-decks--deck_id-">
+                                <a href="#endpoints-PATCHapi-decks--deck_id-">Update a deck</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-decks--deck_id--cards">
                                 <a href="#endpoints-GETapi-decks--deck_id--cards">Get all cards of a deck</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-decks--deck_id--cards">
                                 <a href="#endpoints-POSTapi-decks--deck_id--cards">Create a new card</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-decks--deck_id--cards--card_id-">
+                                <a href="#endpoints-DELETEapi-decks--deck_id--cards--card_id-">Delete a card</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-decks--deck_id--cards--card_id-">
+                                <a href="#endpoints-PATCHapi-decks--deck_id--cards--card_id-">Update a card</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -100,7 +112,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 14, 2026</li>
+        <li>Last updated: April 17, 2026</li>
     </ul>
 </div>
 
@@ -377,6 +389,156 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="endpoints-GETapi-decks--deck_id-">Get a single deck</h2>
+
+<p>
+</p>
+
+<p>Gibt ein einzelnes Deck zurück.</p>
+
+<span id="example-requests-GETapi-decks--deck_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://kuro-api.test/api/decks/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://kuro-api.test/api/decks/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-decks--deck_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Mathe&quot;,
+    &quot;description&quot;: &quot;Formeln lernen&quot;,
+    &quot;color&quot;: &quot;#4ACDB5&quot;,
+    &quot;created_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-decks--deck_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-decks--deck_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-decks--deck_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-decks--deck_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-decks--deck_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-decks--deck_id-" data-method="GET"
+      data-path="api/decks/{deck_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-decks--deck_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-decks--deck_id-"
+                    onclick="tryItOut('GETapi-decks--deck_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-decks--deck_id-"
+                    onclick="cancelTryOut('GETapi-decks--deck_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-decks--deck_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/decks/{deck_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-decks--deck_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-decks--deck_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck_id"                data-endpoint="GETapi-decks--deck_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the deck. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck"                data-endpoint="GETapi-decks--deck_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>Die ID des Decks. Example: <code>1</code></p>
+            </div>
+                    </form>
+
                     <h2 id="endpoints-POSTapi-decks">Create a new deck</h2>
 
 <p>
@@ -551,20 +713,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-decks--deck_id-">Get a single deck</h2>
+                    <h2 id="endpoints-DELETEapi-decks--deck_id-">Delete a deck</h2>
 
 <p>
 </p>
 
-<p>Gibt ein einzelnes Deck zurück.</p>
+<p>Löscht ein Deck und alle dazugehörigen Karten.</p>
 
-<span id="example-requests-GETapi-decks--deck_id-">
+<span id="example-requests-DELETEapi-decks--deck_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://kuro-api.test/api/decks/1" \
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://kuro-api.test/api/decks/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -581,72 +743,68 @@ const headers = {
 
 
 fetch(url, {
-    method: "GET",
+    method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-decks--deck_id-">
+<span id="example-responses-DELETEapi-decks--deck_id-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;title&quot;: &quot;Mathe&quot;,
-    &quot;description&quot;: &quot;Formeln lernen&quot;,
-    &quot;color&quot;: &quot;#4ACDB5&quot;,
-    &quot;created_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Deck deleted&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-decks--deck_id-" hidden>
+<span id="execution-results-DELETEapi-decks--deck_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-decks--deck_id-"></span>:
+                id="execution-response-status-DELETEapi-decks--deck_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-decks--deck_id-"
+    <pre class="json"><code id="execution-response-content-DELETEapi-decks--deck_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-decks--deck_id-" hidden>
+<span id="execution-error-DELETEapi-decks--deck_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-decks--deck_id-">
+    <pre><code id="execution-error-message-DELETEapi-decks--deck_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-decks--deck_id-" data-method="GET"
+<form id="form-DELETEapi-decks--deck_id-" data-method="DELETE"
       data-path="api/decks/{deck_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-decks--deck_id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-decks--deck_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-decks--deck_id-"
-                    onclick="tryItOut('GETapi-decks--deck_id-');">Try it out ⚡
+                    id="btn-tryout-DELETEapi-decks--deck_id-"
+                    onclick="tryItOut('DELETEapi-decks--deck_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-decks--deck_id-"
-                    onclick="cancelTryOut('GETapi-decks--deck_id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEapi-decks--deck_id-"
+                    onclick="cancelTryOut('DELETEapi-decks--deck_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-decks--deck_id-"
+                    id="btn-executetryout-DELETEapi-decks--deck_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
+            <small class="badge badge-red">DELETE</small>
             <b><code>api/decks/{deck_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
@@ -656,7 +814,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-decks--deck_id-"
+                              name="Content-Type"                data-endpoint="DELETEapi-decks--deck_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -668,7 +826,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-decks--deck_id-"
+                              name="Accept"                data-endpoint="DELETEapi-decks--deck_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -681,7 +839,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="deck_id"                data-endpoint="GETapi-decks--deck_id-"
+               step="any"               name="deck_id"                data-endpoint="DELETEapi-decks--deck_id-"
                value="1"
                data-component="url">
     <br>
@@ -693,13 +851,212 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="deck"                data-endpoint="GETapi-decks--deck_id-"
+               step="any"               name="deck"                data-endpoint="DELETEapi-decks--deck_id-"
                value="1"
                data-component="url">
     <br>
 <p>Die ID des Decks. Example: <code>1</code></p>
             </div>
                     </form>
+
+                    <h2 id="endpoints-PATCHapi-decks--deck_id-">Update a deck</h2>
+
+<p>
+</p>
+
+<p>Aktualisiert ein bestehendes Deck.</p>
+
+<span id="example-requests-PATCHapi-decks--deck_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://kuro-api.test/api/decks/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"Biologie\",
+    \"description\": \"Prüfungsvorbereitung Kapitel 3\",
+    \"color\": \"#22c55e\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://kuro-api.test/api/decks/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "Biologie",
+    "description": "Prüfungsvorbereitung Kapitel 3",
+    "color": "#22c55e"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-decks--deck_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Biologie&quot;,
+    &quot;description&quot;: &quot;Pr&uuml;fungsvorbereitung Kapitel 3&quot;,
+    &quot;color&quot;: &quot;#22c55e&quot;,
+    &quot;created_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2026-04-18T10:00:00.000000Z&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-decks--deck_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-decks--deck_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-decks--deck_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-decks--deck_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-decks--deck_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-decks--deck_id-" data-method="PATCH"
+      data-path="api/decks/{deck_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-decks--deck_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-decks--deck_id-"
+                    onclick="tryItOut('PATCHapi-decks--deck_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-decks--deck_id-"
+                    onclick="cancelTryOut('PATCHapi-decks--deck_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-decks--deck_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/decks/{deck_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck_id"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the deck. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>Die ID des Decks. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="Biologie"
+               data-component="body">
+    <br>
+<p>Titel des Decks. Example: <code>Biologie</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="Prüfungsvorbereitung Kapitel 3"
+               data-component="body">
+    <br>
+<p>Beschreibung des Decks. Example: <code>Prüfungsvorbereitung Kapitel 3</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="color"                data-endpoint="PATCHapi-decks--deck_id-"
+               value="#22c55e"
+               data-component="body">
+    <br>
+<p>Farbe des Decks. Example: <code>#22c55e</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-GETapi-decks--deck_id--cards">Get all cards of a deck</h2>
 
@@ -1035,6 +1392,385 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Rückseite der Karte. Example: <code>Eine Programmiersprache</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-decks--deck_id--cards--card_id-">Delete a card</h2>
+
+<p>
+</p>
+
+<p>Löscht eine Karte innerhalb eines Decks.</p>
+
+<span id="example-requests-DELETEapi-decks--deck_id--cards--card_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://kuro-api.test/api/decks/1/cards/2" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://kuro-api.test/api/decks/1/cards/2"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-decks--deck_id--cards--card_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Card deleted&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-decks--deck_id--cards--card_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-decks--deck_id--cards--card_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-decks--deck_id--cards--card_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-decks--deck_id--cards--card_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-decks--deck_id--cards--card_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-decks--deck_id--cards--card_id-" data-method="DELETE"
+      data-path="api/decks/{deck_id}/cards/{card_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-decks--deck_id--cards--card_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-decks--deck_id--cards--card_id-"
+                    onclick="tryItOut('DELETEapi-decks--deck_id--cards--card_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-decks--deck_id--cards--card_id-"
+                    onclick="cancelTryOut('DELETEapi-decks--deck_id--cards--card_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-decks--deck_id--cards--card_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/decks/{deck_id}/cards/{card_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck_id"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the deck. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>card_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="card_id"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="2"
+               data-component="url">
+    <br>
+<p>The ID of the card. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>Die ID des Decks. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>card</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="card"                data-endpoint="DELETEapi-decks--deck_id--cards--card_id-"
+               value="5"
+               data-component="url">
+    <br>
+<p>Die ID der Karte. Example: <code>5</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-decks--deck_id--cards--card_id-">Update a card</h2>
+
+<p>
+</p>
+
+<p>Aktualisiert eine bestehende Karte in einem Deck.</p>
+
+<span id="example-requests-PATCHapi-decks--deck_id--cards--card_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://kuro-api.test/api/decks/1/cards/2" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"front\": \"Was ist ein Controller?\",
+    \"back\": \"Eine Klasse für Request-Handling\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://kuro-api.test/api/decks/1/cards/2"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "front": "Was ist ein Controller?",
+    "back": "Eine Klasse für Request-Handling"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-decks--deck_id--cards--card_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 5,
+    &quot;front&quot;: &quot;Was ist ein Controller?&quot;,
+    &quot;back&quot;: &quot;Eine Klasse f&uuml;r Request-Handling&quot;,
+    &quot;deck_id&quot;: 1,
+    &quot;created_at&quot;: &quot;2026-04-14T10:00:00.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2026-04-18T10:00:00.000000Z&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-decks--deck_id--cards--card_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-decks--deck_id--cards--card_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-decks--deck_id--cards--card_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-decks--deck_id--cards--card_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-decks--deck_id--cards--card_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-decks--deck_id--cards--card_id-" data-method="PATCH"
+      data-path="api/decks/{deck_id}/cards/{card_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-decks--deck_id--cards--card_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-decks--deck_id--cards--card_id-"
+                    onclick="tryItOut('PATCHapi-decks--deck_id--cards--card_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-decks--deck_id--cards--card_id-"
+                    onclick="cancelTryOut('PATCHapi-decks--deck_id--cards--card_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-decks--deck_id--cards--card_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/decks/{deck_id}/cards/{card_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck_id"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the deck. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>card_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="card_id"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="2"
+               data-component="url">
+    <br>
+<p>The ID of the card. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deck</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deck"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>Die ID des Decks. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>card</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="card"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="5"
+               data-component="url">
+    <br>
+<p>Die ID der Karte. Example: <code>5</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>front</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="front"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="Was ist ein Controller?"
+               data-component="body">
+    <br>
+<p>Vorderseite der Karte. Example: <code>Was ist ein Controller?</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>back</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="back"                data-endpoint="PATCHapi-decks--deck_id--cards--card_id-"
+               value="Eine Klasse für Request-Handling"
+               data-component="body">
+    <br>
+<p>Rückseite der Karte. Example: <code>Eine Klasse für Request-Handling</code></p>
         </div>
         </form>
 

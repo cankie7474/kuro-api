@@ -91,6 +91,75 @@ endpoints:
   -
     custom: []
     httpMethods:
+      - GET
+    uri: 'api/decks/{deck_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a single deck'
+      description: 'Gibt ein einzelnes Deck zurück.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      deck_id:
+        custom: []
+        name: deck_id
+        description: 'The ID of the deck.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      deck:
+        custom: []
+        name: deck
+        description: 'Die ID des Decks.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      deck_id: 1
+      deck: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "title": "Mathe",
+            "description": "Formeln lernen",
+            "color": "#4ACDB5",
+            "created_at": "2026-04-14T10:00:00.000000Z",
+            "updated_at": "2026-04-14T10:00:00.000000Z"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
       - POST
     uri: api/decks
     metadata:
@@ -172,7 +241,7 @@ endpoints:
   -
     custom: []
     httpMethods:
-      - GET
+      - DELETE
     uri: 'api/decks/{deck_id}'
     metadata:
       custom: []
@@ -180,8 +249,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get a single deck'
-      description: 'Gibt ein einzelnes Deck zurück.'
+      title: 'Delete a deck'
+      description: 'Löscht ein Deck und alle dazugehörigen Karten.'
       authenticated: false
       deprecated: false
     headers:
@@ -224,12 +293,113 @@ endpoints:
         status: 200
         content: |-
           {
+            "success": true,
+            "message": "Deck deleted"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/decks/{deck_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a deck'
+      description: 'Aktualisiert ein bestehendes Deck.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      deck_id:
+        custom: []
+        name: deck_id
+        description: 'The ID of the deck.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      deck:
+        custom: []
+        name: deck
+        description: 'Die ID des Decks.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      deck_id: 1
+      deck: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'Titel des Decks.'
+        required: true
+        example: Biologie
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Beschreibung des Decks.'
+        required: false
+        example: 'Prüfungsvorbereitung Kapitel 3'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      color:
+        custom: []
+        name: color
+        description: 'Farbe des Decks.'
+        required: false
+        example: '#22c55e'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: Biologie
+      description: 'Prüfungsvorbereitung Kapitel 3'
+      color: '#22c55e'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
             "id": 1,
-            "title": "Mathe",
-            "description": "Formeln lernen",
-            "color": "#4ACDB5",
+            "title": "Biologie",
+            "description": "Prüfungsvorbereitung Kapitel 3",
+            "color": "#22c55e",
             "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-14T10:00:00.000000Z"
+            "updated_at": "2026-04-18T10:00:00.000000Z"
           }
         headers: []
         description: ''
@@ -394,6 +564,212 @@ endpoints:
             "deck_id": 1,
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-14T10:00:00.000000Z"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/decks/{deck_id}/cards/{card_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a card'
+      description: 'Löscht eine Karte innerhalb eines Decks.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      deck_id:
+        custom: []
+        name: deck_id
+        description: 'The ID of the deck.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      card_id:
+        custom: []
+        name: card_id
+        description: 'The ID of the card.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      deck:
+        custom: []
+        name: deck
+        description: 'Die ID des Decks.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      card:
+        custom: []
+        name: card
+        description: 'Die ID der Karte.'
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      deck_id: 1
+      card_id: 2
+      deck: 1
+      card: 5
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Card deleted"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/decks/{deck_id}/cards/{card_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a card'
+      description: 'Aktualisiert eine bestehende Karte in einem Deck.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      deck_id:
+        custom: []
+        name: deck_id
+        description: 'The ID of the deck.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      card_id:
+        custom: []
+        name: card_id
+        description: 'The ID of the card.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      deck:
+        custom: []
+        name: deck
+        description: 'Die ID des Decks.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      card:
+        custom: []
+        name: card
+        description: 'Die ID der Karte.'
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      deck_id: 1
+      card_id: 2
+      deck: 1
+      card: 5
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      front:
+        custom: []
+        name: front
+        description: 'Vorderseite der Karte.'
+        required: true
+        example: 'Was ist ein Controller?'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      back:
+        custom: []
+        name: back
+        description: 'Rückseite der Karte.'
+        required: true
+        example: 'Eine Klasse für Request-Handling'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      front: 'Was ist ein Controller?'
+      back: 'Eine Klasse für Request-Handling'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "id": 5,
+            "front": "Was ist ein Controller?",
+            "back": "Eine Klasse für Request-Handling",
+            "deck_id": 1,
+            "created_at": "2026-04-14T10:00:00.000000Z",
+            "updated_at": "2026-04-18T10:00:00.000000Z"
           }
         headers: []
         description: ''

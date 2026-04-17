@@ -11,9 +11,13 @@ Route::get('/user', function (Request $request) {
 
 // Deck Controller
 Route::get('/decks', [DeckController::class, 'index']);
+Route::get('/decks/{deck}', [DeckController::class, 'show']);
 Route::post('/decks', [DeckController::class, 'store']);
-Route::get('/decks/{deck}', [DeckController::class, 'show']); // get single deck
+Route::delete('/decks/{deck}', [DeckController::class, 'destroy']);
+Route::patch('/decks/{deck}', [DeckController::class, 'update']);
 
 // Card Controller
 Route::get('/decks/{deck}/cards', [CardController::class, 'index']);
 Route::post('/decks/{deck}/cards', [CardController::class, 'store']);
+Route::delete('/decks/{deck}/cards/{card}', [CardController::class, 'destroy']);
+Route::patch('/decks/{deck}/cards/{card}', [CardController::class, 'update']);

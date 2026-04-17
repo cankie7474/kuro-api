@@ -84,18 +84,57 @@ class DeckController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a deck
+     *
+     * Aktualisiert ein bestehendes Deck.
+     *
+     * @urlParam deck integer required Die ID des Decks. Example: 1
+     *
+     * @bodyParam title string required Titel des Decks. Example: Biologie
+     * @bodyParam description string Beschreibung des Decks. Example: Prüfungsvorbereitung Kapitel 3
+     * @bodyParam color string Farbe des Decks. Example: #22c55e
+     *
+     * @response 200 {
+     *   "id": 1,
+     *   "title": "Biologie",
+     *   "description": "Prüfungsvorbereitung Kapitel 3",
+     *   "color": "#22c55e",
+     *   "created_at": "2026-04-14T10:00:00.000000Z",
+     *   "updated_at": "2026-04-18T10:00:00.000000Z"
+     * }
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Deck $deck)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:120',
+            'description' => 'sometimes|nullable|string|max:1000',
+            'color' => 'sometimes|nullable|string|max:30',
+        ]);
+
+        $deck->update($validated);
+
+        return response()->json($deck);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a deck
+     *
+     * Löscht ein Deck und alle dazugehörigen Karten.
+     *
+     * @urlParam deck integer required Die ID des Decks. Example: 1
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Deck deleted"
+     * }
      */
-    public function destroy(string $id)
+    public function destroy(Deck $deck)
     {
-        //
+        $deck->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Deck deleted'
+        ]);
     }
 }
