@@ -49,17 +49,15 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        // connected to fillable
         $validated = $request->validate([
             'title' => 'required|string|max:120',
             'description' => 'nullable|string|max:1000',
             'color' => 'nullable|string|max:30',
-            ]);
+        ]);
 
         $deck = Deck::create($validated);
 
         return response()->json($deck, 201);
-
     }
 
     /**
@@ -134,7 +132,7 @@ class DeckController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Deck deleted'
+            'message' => 'Deck deleted',
         ]);
     }
 }

@@ -99,6 +99,7 @@ class CardController extends Controller
         ]);
 
         $card->update($validated);
+
         return response()->json($card);
     }
 
@@ -121,7 +122,7 @@ class CardController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Card deleted'
+            'message' => 'Card deleted',
         ]);
     }
 }

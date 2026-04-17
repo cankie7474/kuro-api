@@ -1,13 +1,16 @@
 # Introduction
 
-
+REST API for managing decks and cards in Kuro.
 
 <aside>
     <strong>Base URL</strong>: <code>http://kuro-api.test</code>
 </aside>
 
-    This documentation aims to provide all the information you need to work with our API.
+    Build and manage flashcard content through the Kuro API.
 
-    <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-    You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+    This reference covers the available deck and card endpoints, expected request bodies, and example responses.
+
+    <aside>
+    Use the interactive examples to test requests directly against your local environment while developing.
+    </aside>
 

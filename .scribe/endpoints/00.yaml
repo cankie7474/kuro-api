@@ -1,4 +1,4 @@
-name: Endpoints
+name: API
 description: ''
 endpoints:
   -
@@ -8,7 +8,7 @@ endpoints:
     uri: api/user
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -48,7 +48,7 @@ endpoints:
     uri: api/decks
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -95,7 +95,7 @@ endpoints:
     uri: 'api/decks/{deck_id}'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -164,7 +164,7 @@ endpoints:
     uri: api/decks
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -245,7 +245,7 @@ endpoints:
     uri: 'api/decks/{deck_id}'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -310,7 +310,7 @@ endpoints:
     uri: 'api/decks/{deck_id}'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -415,7 +415,7 @@ endpoints:
     uri: 'api/decks/{deck_id}/cards'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -486,7 +486,7 @@ endpoints:
     uri: 'api/decks/{deck_id}/cards'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -579,7 +579,7 @@ endpoints:
     uri: 'api/decks/{deck_id}/cards/{card_id}'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -668,7 +668,7 @@ endpoints:
     uri: 'api/decks/{deck_id}/cards/{card_id}'
     metadata:
       custom: []
-      groupName: Endpoints
+      groupName: API
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
