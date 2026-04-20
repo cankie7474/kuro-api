@@ -24,9 +24,11 @@ class DeckController extends Controller
      *   }
      * ]
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Deck::all());
+        return response()->json(
+            $request->user()->decks()->latest()->get()
+        );
     }
 
     /**
@@ -55,7 +57,7 @@ class DeckController extends Controller
             'color' => 'nullable|string|max:30',
         ]);
 
-        $deck = Deck::create($validated);
+        $deck = $request->user()->decks()->create($validated);
 
         return response()->json($deck, 201);
     }
@@ -76,8 +78,9 @@ class DeckController extends Controller
      *   "updated_at": "2026-04-14T10:00:00.000000Z"
      * }
      */
-    public function show(Deck $deck)
+    public function show(Request $request, Deck $deck)
     {
+        abort_if($deck->user_id !== $request->user()->id, 403);
         return response()->json($deck);
     }
 
@@ -103,6 +106,8 @@ class DeckController extends Controller
      */
     public function update(Request $request, Deck $deck)
     {
+        abort_if($deck->user_id !== $request->user()->id, 403);
+
         $validated = $request->validate([
             'title' => 'required|string|max:120',
             'description' => 'sometimes|nullable|string|max:1000',
@@ -126,8 +131,10 @@ class DeckController extends Controller
      *   "message": "Deck deleted"
      * }
      */
-    public function destroy(Deck $deck)
+    public function destroy(Request $request, Deck $deck)
     {
+        abort_if($deck->user_id !== $request->user()->id, 403);
+
         $deck->delete();
 
         return response()->json([

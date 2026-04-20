@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->scopeBindings()->group(function () {
     // Decks
     Route::get('/decks', [DeckController::class, 'index']);
     Route::get('/decks/{deck}', [DeckController::class, 'show']);

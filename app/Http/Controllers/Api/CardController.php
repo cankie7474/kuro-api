@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
+    protected function ensureOwnedDeck(Request $request, Deck $deck):void {
+        abort_if($deck->user_id !== $request->user()->id, 403);
+    }
+
+    protected function ensureCardBelongsToDeck(Deck $deck, Card $card):Card {
+        return $deck->cards()->whereKey($card->id)->firstOrFail();
+    }
+
     /**
      * Get all cards of a deck
      *
@@ -27,9 +35,11 @@ class CardController extends Controller
      *   }
      * ]
      */
-    public function index(Deck $deck)
+    public function index(Request $request, Deck $deck)
     {
-        return response()->json($deck->cards);
+        $this->ensureOwnedDeck($request, $deck);
+
+        return response()->json($deck->cards()->latest()->get());
     }
 
     /**
@@ -53,6 +63,8 @@ class CardController extends Controller
      */
     public function store(Request $request, Deck $deck)
     {
+        $this->ensureOwnedDeck($request, $deck);
+
         $validated = $request->validate([
             'front' => 'required|string',
             'back' => 'required|string',
@@ -93,6 +105,9 @@ class CardController extends Controller
      */
     public function update(Request $request, Deck $deck, Card $card)
     {
+        $this->ensureOwnedDeck($request, $deck);
+        $card = $this->ensureCardBelongsToDeck($deck, $card);
+
         $validated = $request->validate([
             'front' => 'required|string',
             'back' => 'required|string',
@@ -116,9 +131,12 @@ class CardController extends Controller
      *   "message": "Card deleted"
      * }
      */
-    public function destroy(Deck $deck, Card $card)
+    public function destroy(Request $request, Deck $deck, Card $card)
     {
-        $deck->cards()->whereKey($card->id)->firstOrFail()->delete();
+        $this->ensureOwnedDeck($request, $deck);
+        $card = $this->ensureCardBelongsToDeck($deck, $card);
+
+        $card->delete();
 
         return response()->json([
             'success' => true,
