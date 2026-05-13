@@ -13,6 +13,9 @@ class DeckController extends Controller
      *
      * Gibt alle Decks zurück.
      *
+     * @group Decks
+     * @authenticated
+     *
      * @response 200 [
      *   {
      *     "id": 1,
@@ -35,6 +38,9 @@ class DeckController extends Controller
      * Create a new deck
      *
      * Erstellt ein neues Deck.
+     *
+     * @group Decks
+     * @authenticated
      *
      * @bodyParam title string required Titel des Decks. Example: Englisch Vokabeln
      * @bodyParam description string Beschreibung des Decks. Example: Lernen für Test
@@ -67,6 +73,9 @@ class DeckController extends Controller
      *
      * Gibt ein einzelnes Deck zurück.
      *
+     * @group Decks
+     * @authenticated
+     *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      *
      * @response 200 {
@@ -88,6 +97,9 @@ class DeckController extends Controller
      * Update a deck
      *
      * Aktualisiert ein bestehendes Deck.
+     *
+     * @group Decks
+     * @authenticated
      *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      *
@@ -123,6 +135,9 @@ class DeckController extends Controller
      * Delete a deck
      *
      * Löscht ein Deck und alle dazugehörigen Karten.
+     *
+     * @group Decks
+     * @authenticated
      *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      *

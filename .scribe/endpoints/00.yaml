@@ -1,19 +1,19 @@
-name: API
+name: Authentication
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
-      - GET
-    uri: api/user
+      - POST
+    uri: api/register
     metadata:
       custom: []
-      groupName: API
+      groupName: Authentication
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: Register
+      description: 'Creates a new user account and returns a Sanctum bearer token.'
       authenticated: false
       deprecated: false
     headers:
@@ -23,19 +23,142 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: "The user's display name."
+        required: true
+        example: 'Max Mustermann'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: "The user's unique email address."
+        required: true
+        example: max@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'The password. Must contain at least 8 characters, uppercase and lowercase letters, numbers, and symbols.'
+        required: true
+        example: Secure123!
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: 'Max Mustermann'
+      email: max@example.com
+      password: Secure123!
     fileParameters: []
     responses:
+      -
+        custom: []
+        status: 201
+        content: |-
+          {
+            "user": {
+              "id": 1,
+              "name": "Max Mustermann",
+              "email": "max@example.com",
+              "created_at": "2026-04-14T10:00:00.000000Z",
+              "updated_at": "2026-04-14T10:00:00.000000Z"
+            },
+            "token": "1|plain-text-token"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Login
+      description: 'Authenticates an existing user and returns a Sanctum bearer token.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: "The user's email address."
+        required: true
+        example: max@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: "The user's password."
+        required: true
+        example: Secure123!
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: max@example.com
+      password: Secure123!
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "user": {
+              "id": 1,
+              "name": "Max Mustermann",
+              "email": "max@example.com",
+              "created_at": "2026-04-14T10:00:00.000000Z",
+              "updated_at": "2026-04-14T10:00:00.000000Z"
+            },
+            "token": "1|plain-text-token"
+          }
+        headers: []
+        description: ''
       -
         custom: []
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: |-
+          {
+            "message": "Invalid credentials"
+          }
+        headers: []
+        description: ''
     responseFields: []
     auth: []
     controller: null
@@ -45,18 +168,19 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: api/decks
+    uri: api/me
     metadata:
       custom: []
-      groupName: API
+      groupName: Authentication
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get all decks'
-      description: 'Gibt alle Decks zurück.'
-      authenticated: false
+      title: 'Get current user'
+      description: "Returns the authenticated user's profile."
+      authenticated: true
       deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -71,89 +195,18 @@ endpoints:
         custom: []
         status: 200
         content: |-
-          [
-            {
-              "id": 1,
-              "title": "Mathe",
-              "description": "Formeln lernen",
-              "color": "#4ACDB5",
-              "created_at": "2026-04-14T10:00:00.000000Z",
-              "updated_at": "2026-04-14T10:00:00.000000Z"
-            }
-          ]
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/decks/{deck_id}'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get a single deck'
-      description: 'Gibt ein einzelnes Deck zurück.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      deck: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
           {
             "id": 1,
-            "title": "Mathe",
-            "description": "Formeln lernen",
-            "color": "#4ACDB5",
-            "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-14T10:00:00.000000Z"
+            "name": "Max Mustermann",
+            "email": "max@example.com"
           }
         headers: []
         description: ''
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -161,129 +214,25 @@ endpoints:
     custom: []
     httpMethods:
       - POST
-    uri: api/decks
+    uri: api/logout
     metadata:
       custom: []
-      groupName: API
+      groupName: Authentication
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Create a new deck'
-      description: 'Erstellt ein neues Deck.'
-      authenticated: false
+      title: Logout
+      description: 'Deletes the current access token.'
+      authenticated: true
       deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      title:
-        custom: []
-        name: title
-        description: 'Titel des Decks.'
-        required: true
-        example: 'Englisch Vokabeln'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      description:
-        custom: []
-        name: description
-        description: 'Beschreibung des Decks.'
-        required: false
-        example: 'Lernen für Test'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      color:
-        custom: []
-        name: color
-        description: 'Farbe des Decks.'
-        required: false
-        example: '#098588'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      title: 'Englisch Vokabeln'
-      description: 'Lernen für Test'
-      color: '#098588'
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 201
-        content: |-
-          {
-            "id": 1,
-            "title": "Englisch Vokabeln",
-            "description": "Lernen für Test",
-            "color": "#098588",
-            "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-14T10:00:00.000000Z"
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - DELETE
-    uri: 'api/decks/{deck_id}'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Delete a deck'
-      description: 'Löscht ein Deck und alle dazugehörigen Karten.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      deck: 1
-    queryParameters: []
-    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -293,488 +242,15 @@ endpoints:
         status: 200
         content: |-
           {
-            "success": true,
-            "message": "Deck deleted"
+            "message": "Logged out"
           }
         headers: []
         description: ''
     responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - PATCH
-    uri: 'api/decks/{deck_id}'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update a deck'
-      description: 'Aktualisiert ein bestehendes Deck.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      deck: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        custom: []
-        name: title
-        description: 'Titel des Decks.'
-        required: true
-        example: Biologie
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      description:
-        custom: []
-        name: description
-        description: 'Beschreibung des Decks.'
-        required: false
-        example: 'Prüfungsvorbereitung Kapitel 3'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      color:
-        custom: []
-        name: color
-        description: 'Farbe des Decks.'
-        required: false
-        example: '#22c55e'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      title: Biologie
-      description: 'Prüfungsvorbereitung Kapitel 3'
-      color: '#22c55e'
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "id": 1,
-            "title": "Biologie",
-            "description": "Prüfungsvorbereitung Kapitel 3",
-            "color": "#22c55e",
-            "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-18T10:00:00.000000Z"
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/decks/{deck_id}/cards'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get all cards of a deck'
-      description: 'Gibt alle Karten eines bestimmten Decks zurück.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      deck: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          [
-            {
-              "id": 1,
-              "front": "Was ist Laravel?",
-              "back": "Ein PHP Framework",
-              "deck_id": 1,
-              "created_at": "2026-04-14T10:00:00.000000Z",
-              "updated_at": "2026-04-14T10:00:00.000000Z"
-            }
-          ]
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/decks/{deck_id}/cards'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Create a new card'
-      description: 'Erstellt eine neue Karte in einem Deck.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      deck: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      front:
-        custom: []
-        name: front
-        description: 'Vorderseite der Karte.'
-        required: true
-        example: 'Was ist PHP?'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      back:
-        custom: []
-        name: back
-        description: 'Rückseite der Karte.'
-        required: true
-        example: 'Eine Programmiersprache'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      front: 'Was ist PHP?'
-      back: 'Eine Programmiersprache'
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 201
-        content: |-
-          {
-            "id": 1,
-            "front": "Was ist PHP?",
-            "back": "Eine Programmiersprache",
-            "deck_id": 1,
-            "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-14T10:00:00.000000Z"
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - DELETE
-    uri: 'api/decks/{deck_id}/cards/{card_id}'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Delete a card'
-      description: 'Löscht eine Karte innerhalb eines Decks.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_id:
-        custom: []
-        name: card_id
-        description: 'The ID of the card.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      card:
-        custom: []
-        name: card
-        description: 'Die ID der Karte.'
-        required: true
-        example: 5
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      card_id: 2
-      deck: 1
-      card: 5
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "success": true,
-            "message": "Card deleted"
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - PATCH
-    uri: 'api/decks/{deck_id}/cards/{card_id}'
-    metadata:
-      custom: []
-      groupName: API
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update a card'
-      description: 'Aktualisiert eine bestehende Karte in einem Deck.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      deck_id:
-        custom: []
-        name: deck_id
-        description: 'The ID of the deck.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_id:
-        custom: []
-        name: card_id
-        description: 'The ID of the card.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      deck:
-        custom: []
-        name: deck
-        description: 'Die ID des Decks.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      card:
-        custom: []
-        name: card
-        description: 'Die ID der Karte.'
-        required: true
-        example: 5
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      deck_id: 1
-      card_id: 2
-      deck: 1
-      card: 5
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      front:
-        custom: []
-        name: front
-        description: 'Vorderseite der Karte.'
-        required: true
-        example: 'Was ist ein Controller?'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      back:
-        custom: []
-        name: back
-        description: 'Rückseite der Karte.'
-        required: true
-        example: 'Eine Klasse für Request-Handling'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      front: 'Was ist ein Controller?'
-      back: 'Eine Klasse für Request-Handling'
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "id": 5,
-            "front": "Was ist ein Controller?",
-            "back": "Eine Klasse für Request-Handling",
-            "deck_id": 1,
-            "created_at": "2026-04-14T10:00:00.000000Z",
-            "updated_at": "2026-04-18T10:00:00.000000Z"
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

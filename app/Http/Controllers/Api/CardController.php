@@ -22,6 +22,9 @@ class CardController extends Controller
      *
      * Gibt alle Karten eines bestimmten Decks zurück.
      *
+     * @group Cards
+     * @authenticated
+     *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      *
      * @response 200 [
@@ -46,6 +49,9 @@ class CardController extends Controller
      * Create a new card
      *
      * Erstellt eine neue Karte in einem Deck.
+     *
+     * @group Cards
+     * @authenticated
      *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      *
@@ -88,6 +94,9 @@ class CardController extends Controller
      *
      * Aktualisiert eine bestehende Karte in einem Deck.
      *
+     * @group Cards
+     * @authenticated
+     *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      * @urlParam card integer required Die ID der Karte. Example: 5
      *
@@ -122,6 +131,9 @@ class CardController extends Controller
      * Delete a card
      *
      * Löscht eine Karte innerhalb eines Decks.
+     *
+     * @group Cards
+     * @authenticated
      *
      * @urlParam deck integer required Die ID des Decks. Example: 1
      * @urlParam card integer required Die ID der Karte. Example: 5
