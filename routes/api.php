@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CardController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeckController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('users', [UserController::class, 'index']);
 });
 
