@@ -20,18 +20,22 @@ class CardController extends Controller
     /**
      * Get all cards of a deck
      *
-     * Gibt alle Karten eines bestimmten Decks zurück.
+     * Returns all cards in a deck owned by the authenticated user.
      *
      * @group Cards
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
+     * @urlParam deck integer required The deck ID. Example: 1
      *
      * @response 200 [
      *   {
      *     "id": 1,
-     *     "front": "Was ist Laravel?",
-     *     "back": "Ein PHP Framework",
+     *     "front": "What is Laravel?",
+     *     "back": "A PHP framework",
+     *     "due_at": null,
+     *     "last_reviewed_at": null,
+     *     "review_count": 0,
+     *     "interval_days": 0,
      *     "deck_id": 1,
      *     "created_at": "2026-04-14T10:00:00.000000Z",
      *     "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -48,20 +52,24 @@ class CardController extends Controller
     /**
      * Create a new card
      *
-     * Erstellt eine neue Karte in einem Deck.
+     * Creates a new card in a deck owned by the authenticated user.
      *
      * @group Cards
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
+     * @urlParam deck integer required The deck ID. Example: 1
      *
-     * @bodyParam front string required Vorderseite der Karte. Example: Was ist PHP?
-     * @bodyParam back string required Rückseite der Karte. Example: Eine Programmiersprache
+     * @bodyParam front string required The front side of the card. Example: What is PHP?
+     * @bodyParam back string required The back side of the card. Example: A programming language
      *
      * @response 201 {
      *   "id": 1,
-     *   "front": "Was ist PHP?",
-     *   "back": "Eine Programmiersprache",
+     *   "front": "What is PHP?",
+     *   "back": "A programming language",
+     *   "due_at": null,
+     *   "last_reviewed_at": null,
+     *   "review_count": 0,
+     *   "interval_days": 0,
      *   "deck_id": 1,
      *   "created_at": "2026-04-14T10:00:00.000000Z",
      *   "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -92,21 +100,25 @@ class CardController extends Controller
     /**
      * Update a card
      *
-     * Aktualisiert eine bestehende Karte in einem Deck.
+     * Updates a card in a deck owned by the authenticated user.
      *
      * @group Cards
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
-     * @urlParam card integer required Die ID der Karte. Example: 5
+     * @urlParam deck integer required The deck ID. Example: 1
+     * @urlParam card integer required The card ID. Example: 5
      *
-     * @bodyParam front string required Vorderseite der Karte. Example: Was ist ein Controller?
-     * @bodyParam back string required Rückseite der Karte. Example: Eine Klasse für Request-Handling
+     * @bodyParam front string required The front side of the card. Example: What is a controller?
+     * @bodyParam back string required The back side of the card. Example: A class for handling requests
      *
      * @response 200 {
      *   "id": 5,
-     *   "front": "Was ist ein Controller?",
-     *   "back": "Eine Klasse für Request-Handling",
+     *   "front": "What is a controller?",
+     *   "back": "A class for handling requests",
+     *   "due_at": null,
+     *   "last_reviewed_at": null,
+     *   "review_count": 0,
+     *   "interval_days": 0,
      *   "deck_id": 1,
      *   "created_at": "2026-04-14T10:00:00.000000Z",
      *   "updated_at": "2026-04-18T10:00:00.000000Z"
@@ -130,13 +142,13 @@ class CardController extends Controller
     /**
      * Delete a card
      *
-     * Löscht eine Karte innerhalb eines Decks.
+     * Deletes a card from a deck owned by the authenticated user.
      *
      * @group Cards
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
-     * @urlParam card integer required Die ID der Karte. Example: 5
+     * @urlParam deck integer required The deck ID. Example: 1
+     * @urlParam card integer required The card ID. Example: 5
      *
      * @response 200 {
      *   "success": true,

@@ -41,10 +41,10 @@ class AuthController extends Controller
                 'required',
                 'string',
                 Password::min(8)
-                ->mixedCase() // Groß + Kleinbuchstaben
-                ->letters() // Buchstaben
-                ->numbers() // Zahlen
-                ->symbols(), // Sonderzeichen
+                ->mixedCase()
+                ->letters()
+                ->numbers()
+                ->symbols(),
             ],
         ]);
 

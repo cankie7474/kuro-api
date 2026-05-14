@@ -25,8 +25,8 @@ class DashboardController extends Controller
      *   "study_streak": 0,
      *   "latest_deck": {
      *     "id": 1,
-     *     "title": "Mathe",
-     *     "description": "Formeln lernen",
+     *     "title": "Math",
+     *     "description": "Practice formulas",
      *     "progress": 0
      *   }
      * }

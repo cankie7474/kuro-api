@@ -11,7 +11,7 @@ class DeckController extends Controller
     /**
      * Get all decks
      *
-     * Gibt alle Decks zurück.
+     * Returns all decks owned by the authenticated user.
      *
      * @group Decks
      * @authenticated
@@ -19,8 +19,8 @@ class DeckController extends Controller
      * @response 200 [
      *   {
      *     "id": 1,
-     *     "title": "Mathe",
-     *     "description": "Formeln lernen",
+     *     "title": "Math",
+     *     "description": "Practice formulas",
      *     "color": "#4ACDB5",
      *     "created_at": "2026-04-14T10:00:00.000000Z",
      *     "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -37,19 +37,19 @@ class DeckController extends Controller
     /**
      * Create a new deck
      *
-     * Erstellt ein neues Deck.
+     * Creates a new deck for the authenticated user.
      *
      * @group Decks
      * @authenticated
      *
-     * @bodyParam title string required Titel des Decks. Example: Englisch Vokabeln
-     * @bodyParam description string Beschreibung des Decks. Example: Lernen für Test
-     * @bodyParam color string Farbe des Decks. Example: #098588
+     * @bodyParam title string required The deck title. Example: English vocabulary
+     * @bodyParam description string The deck description. Example: Practice for the exam
+     * @bodyParam color string The deck color. Example: #098588
      *
      * @response 201 {
      *   "id": 1,
-     *   "title": "Englisch Vokabeln",
-     *   "description": "Lernen für Test",
+     *   "title": "English vocabulary",
+     *   "description": "Practice for the exam",
      *   "color": "#098588",
      *   "created_at": "2026-04-14T10:00:00.000000Z",
      *   "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -71,17 +71,17 @@ class DeckController extends Controller
     /**
      * Get a single deck
      *
-     * Gibt ein einzelnes Deck zurück.
+     * Returns a single deck owned by the authenticated user.
      *
      * @group Decks
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
+     * @urlParam deck integer required The deck ID. Example: 1
      *
      * @response 200 {
      *   "id": 1,
-     *   "title": "Mathe",
-     *   "description": "Formeln lernen",
+     *   "title": "Math",
+     *   "description": "Practice formulas",
      *   "color": "#4ACDB5",
      *   "created_at": "2026-04-14T10:00:00.000000Z",
      *   "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -96,21 +96,21 @@ class DeckController extends Controller
     /**
      * Update a deck
      *
-     * Aktualisiert ein bestehendes Deck.
+     * Updates a deck owned by the authenticated user.
      *
      * @group Decks
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
+     * @urlParam deck integer required The deck ID. Example: 1
      *
-     * @bodyParam title string required Titel des Decks. Example: Biologie
-     * @bodyParam description string Beschreibung des Decks. Example: Prüfungsvorbereitung Kapitel 3
-     * @bodyParam color string Farbe des Decks. Example: #22c55e
+     * @bodyParam title string required The deck title. Example: Biology
+     * @bodyParam description string The deck description. Example: Chapter 3 exam prep
+     * @bodyParam color string The deck color. Example: #22c55e
      *
      * @response 200 {
      *   "id": 1,
-     *   "title": "Biologie",
-     *   "description": "Prüfungsvorbereitung Kapitel 3",
+     *   "title": "Biology",
+     *   "description": "Chapter 3 exam prep",
      *   "color": "#22c55e",
      *   "created_at": "2026-04-14T10:00:00.000000Z",
      *   "updated_at": "2026-04-18T10:00:00.000000Z"
@@ -134,12 +134,12 @@ class DeckController extends Controller
     /**
      * Delete a deck
      *
-     * Löscht ein Deck und alle dazugehörigen Karten.
+     * Deletes a deck owned by the authenticated user.
      *
      * @group Decks
      * @authenticated
      *
-     * @urlParam deck integer required Die ID des Decks. Example: 1
+     * @urlParam deck integer required The deck ID. Example: 1
      *
      * @response 200 {
      *   "success": true,

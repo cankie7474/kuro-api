@@ -15,7 +15,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Get all cards of a deck'
-      description: 'Gibt alle Karten eines bestimmten Decks zurück.'
+      description: 'Returns all cards in a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -37,7 +37,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -61,8 +61,12 @@ endpoints:
           [
             {
               "id": 1,
-              "front": "Was ist Laravel?",
-              "back": "Ein PHP Framework",
+              "front": "What is Laravel?",
+              "back": "A PHP framework",
+              "due_at": null,
+              "last_reviewed_at": null,
+              "review_count": 0,
+              "interval_days": 0,
               "deck_id": 1,
               "created_at": "2026-04-14T10:00:00.000000Z",
               "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -90,7 +94,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Create a new card'
-      description: 'Erstellt eine neue Karte in einem Deck.'
+      description: 'Creates a new card in a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -112,7 +116,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -129,9 +133,9 @@ endpoints:
       front:
         custom: []
         name: front
-        description: 'Vorderseite der Karte.'
+        description: 'The front side of the card.'
         required: true
-        example: 'Was ist PHP?'
+        example: 'What is PHP?'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -140,17 +144,17 @@ endpoints:
       back:
         custom: []
         name: back
-        description: 'Rückseite der Karte.'
+        description: 'The back side of the card.'
         required: true
-        example: 'Eine Programmiersprache'
+        example: 'A programming language'
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      front: 'Was ist PHP?'
-      back: 'Eine Programmiersprache'
+      front: 'What is PHP?'
+      back: 'A programming language'
     fileParameters: []
     responses:
       -
@@ -159,8 +163,12 @@ endpoints:
         content: |-
           {
             "id": 1,
-            "front": "Was ist PHP?",
-            "back": "Eine Programmiersprache",
+            "front": "What is PHP?",
+            "back": "A programming language",
+            "due_at": null,
+            "last_reviewed_at": null,
+            "review_count": 0,
+            "interval_days": 0,
             "deck_id": 1,
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -187,7 +195,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Delete a card'
-      description: 'Löscht eine Karte innerhalb eines Decks.'
+      description: 'Deletes a card from a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -220,7 +228,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -231,7 +239,7 @@ endpoints:
       card:
         custom: []
         name: card
-        description: 'Die ID der Karte.'
+        description: 'The card ID.'
         required: true
         example: 5
         type: integer
@@ -280,7 +288,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Update a card'
-      description: 'Aktualisiert eine bestehende Karte in einem Deck.'
+      description: 'Updates a card in a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -313,7 +321,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -324,7 +332,7 @@ endpoints:
       card:
         custom: []
         name: card
-        description: 'Die ID der Karte.'
+        description: 'The card ID.'
         required: true
         example: 5
         type: integer
@@ -343,9 +351,9 @@ endpoints:
       front:
         custom: []
         name: front
-        description: 'Vorderseite der Karte.'
+        description: 'The front side of the card.'
         required: true
-        example: 'Was ist ein Controller?'
+        example: 'What is a controller?'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -354,17 +362,17 @@ endpoints:
       back:
         custom: []
         name: back
-        description: 'Rückseite der Karte.'
+        description: 'The back side of the card.'
         required: true
-        example: 'Eine Klasse für Request-Handling'
+        example: 'A class for handling requests'
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      front: 'Was ist ein Controller?'
-      back: 'Eine Klasse für Request-Handling'
+      front: 'What is a controller?'
+      back: 'A class for handling requests'
     fileParameters: []
     responses:
       -
@@ -373,8 +381,12 @@ endpoints:
         content: |-
           {
             "id": 5,
-            "front": "Was ist ein Controller?",
-            "back": "Eine Klasse für Request-Handling",
+            "front": "What is a controller?",
+            "back": "A class for handling requests",
+            "due_at": null,
+            "last_reviewed_at": null,
+            "review_count": 0,
+            "interval_days": 0,
             "deck_id": 1,
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-18T10:00:00.000000Z"

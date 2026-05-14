@@ -15,7 +15,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Get all decks'
-      description: 'Gibt alle Decks zurück.'
+      description: 'Returns all decks owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -37,8 +37,8 @@ endpoints:
           [
             {
               "id": 1,
-              "title": "Mathe",
-              "description": "Formeln lernen",
+              "title": "Math",
+              "description": "Practice formulas",
               "color": "#4ACDB5",
               "created_at": "2026-04-14T10:00:00.000000Z",
               "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -66,7 +66,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Get a single deck'
-      description: 'Gibt ein einzelnes Deck zurück.'
+      description: 'Returns a single deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -88,7 +88,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -111,8 +111,8 @@ endpoints:
         content: |-
           {
             "id": 1,
-            "title": "Mathe",
-            "description": "Formeln lernen",
+            "title": "Math",
+            "description": "Practice formulas",
             "color": "#4ACDB5",
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -139,7 +139,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Create a new deck'
-      description: 'Erstellt ein neues Deck.'
+      description: 'Creates a new deck for the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -154,9 +154,9 @@ endpoints:
       title:
         custom: []
         name: title
-        description: 'Titel des Decks.'
+        description: 'The deck title.'
         required: true
-        example: 'Englisch Vokabeln'
+        example: 'English vocabulary'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -165,9 +165,9 @@ endpoints:
       description:
         custom: []
         name: description
-        description: 'Beschreibung des Decks.'
+        description: 'The deck description.'
         required: false
-        example: 'Lernen für Test'
+        example: 'Practice for the exam'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -176,7 +176,7 @@ endpoints:
       color:
         custom: []
         name: color
-        description: 'Farbe des Decks.'
+        description: 'The deck color.'
         required: false
         example: '#098588'
         type: string
@@ -185,8 +185,8 @@ endpoints:
         nullable: true
         deprecated: false
     cleanBodyParameters:
-      title: 'Englisch Vokabeln'
-      description: 'Lernen für Test'
+      title: 'English vocabulary'
+      description: 'Practice for the exam'
       color: '#098588'
     fileParameters: []
     responses:
@@ -196,8 +196,8 @@ endpoints:
         content: |-
           {
             "id": 1,
-            "title": "Englisch Vokabeln",
-            "description": "Lernen für Test",
+            "title": "English vocabulary",
+            "description": "Practice for the exam",
             "color": "#098588",
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-14T10:00:00.000000Z"
@@ -224,7 +224,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Delete a deck'
-      description: 'Löscht ein Deck und alle dazugehörigen Karten.'
+      description: 'Deletes a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -246,7 +246,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -293,7 +293,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Update a deck'
-      description: 'Aktualisiert ein bestehendes Deck.'
+      description: 'Updates a deck owned by the authenticated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -315,7 +315,7 @@ endpoints:
       deck:
         custom: []
         name: deck
-        description: 'Die ID des Decks.'
+        description: 'The deck ID.'
         required: true
         example: 1
         type: integer
@@ -332,9 +332,9 @@ endpoints:
       title:
         custom: []
         name: title
-        description: 'Titel des Decks.'
+        description: 'The deck title.'
         required: true
-        example: Biologie
+        example: Biology
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -343,9 +343,9 @@ endpoints:
       description:
         custom: []
         name: description
-        description: 'Beschreibung des Decks.'
+        description: 'The deck description.'
         required: false
-        example: 'Prüfungsvorbereitung Kapitel 3'
+        example: 'Chapter 3 exam prep'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -354,7 +354,7 @@ endpoints:
       color:
         custom: []
         name: color
-        description: 'Farbe des Decks.'
+        description: 'The deck color.'
         required: false
         example: '#22c55e'
         type: string
@@ -363,8 +363,8 @@ endpoints:
         nullable: true
         deprecated: false
     cleanBodyParameters:
-      title: Biologie
-      description: 'Prüfungsvorbereitung Kapitel 3'
+      title: Biology
+      description: 'Chapter 3 exam prep'
       color: '#22c55e'
     fileParameters: []
     responses:
@@ -374,8 +374,8 @@ endpoints:
         content: |-
           {
             "id": 1,
-            "title": "Biologie",
-            "description": "Prüfungsvorbereitung Kapitel 3",
+            "title": "Biology",
+            "description": "Chapter 3 exam prep",
             "color": "#22c55e",
             "created_at": "2026-04-14T10:00:00.000000Z",
             "updated_at": "2026-04-18T10:00:00.000000Z"
