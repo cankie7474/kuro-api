@@ -1,24 +1,30 @@
 <?php
 
-use App\Models\Card;
-use App\Models\Deck;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
 it('deletes a card from the given deck', function () {
-    $deck = Deck::create([
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    $deck = $user->decks()->create([
         'title' => 'Test Deck',
     ]);
 
-    $card = Card::create([
-        'deck_id' => $deck->id,
+    $card = $deck->cards()->create([
         'front' => 'Front',
         'back' => 'Back',
     ]);
 
     $this->deleteJson("/api/decks/{$deck->id}/cards/{$card->id}")
-        ->assertNoContent();
+        ->assertOk()
+        ->assertJson([
+            'success' => true,
+            'message' => 'Card deleted',
+        ]);
 
     $this->assertDatabaseMissing('cards', [
         'id' => $card->id,
@@ -26,16 +32,18 @@ it('deletes a card from the given deck', function () {
 });
 
 it('returns 404 when the card does not belong to the given deck', function () {
-    $deck = Deck::create([
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    $deck = $user->decks()->create([
         'title' => 'Deck A',
     ]);
 
-    $otherDeck = Deck::create([
+    $otherDeck = $user->decks()->create([
         'title' => 'Deck B',
     ]);
 
-    $card = Card::create([
-        'deck_id' => $otherDeck->id,
+    $card = $otherDeck->cards()->create([
         'front' => 'Front',
         'back' => 'Back',
     ]);
