@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Card;
+use App\Models\CardReview;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,6 +15,7 @@ class DashboardController extends Controller
      * Returns summary statistics for the authenticated user's decks and cards.
      *
      * @group Dashboard
+     *
      * @authenticated
      *
      * @response 200 {
@@ -38,20 +40,65 @@ class DashboardController extends Controller
         $deckCount = $deckIds->count();
 
         $cardCount = Card::whereIn('deck_id', $deckIds)->count();
+        $dueCards = Card::whereIn('deck_id', $deckIds)
+            ->where(function ($query) {
+                $query->whereNull('due_at')
+                    ->orWhere('due_at', '<=', now());
+            })
+            ->count();
 
         $latestDeck = $user->decks()->latest()->first();
+        $latestDeckProgress = $latestDeck
+            ? $this->deckProgress($latestDeck->id)
+            : 0;
 
         return response()->json([
             'deck_count' => $deckCount,
             'card_count' => $cardCount,
-            'due_cards' => 0,
-            'study_streak' => 0,
+            'due_cards' => $dueCards,
+            'study_streak' => $this->studyStreak($user->id),
             'latest_deck' => $latestDeck ? [
                 'id' => $latestDeck->id,
                 'title' => $latestDeck->title,
                 'description' => $latestDeck->description,
-                'progress' => 0,
+                'progress' => $latestDeckProgress,
             ] : null,
         ]);
+    }
+
+    private function deckProgress(int $deckId): int
+    {
+        $totalCards = Card::where('deck_id', $deckId)->count();
+
+        if ($totalCards === 0) {
+            return 0;
+        }
+
+        $reviewedCards = Card::where('deck_id', $deckId)
+            ->where('review_count', '>', 0)
+            ->count();
+
+        return (int) round(($reviewedCards / $totalCards) * 100);
+    }
+
+    private function studyStreak(int $userId): int
+    {
+        $streak = 0;
+        $date = now()->startOfDay();
+
+        while ($streak < 365) {
+            $hasReview = CardReview::where('user_id', $userId)
+                ->whereDate('created_at', $date)
+                ->exists();
+
+            if (! $hasReview) {
+                break;
+            }
+
+            $streak++;
+            $date->subDay();
+        }
+
+        return $streak;
     }
 }
